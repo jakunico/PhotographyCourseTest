@@ -24,6 +24,8 @@
 		FED8B19924411F1D008AA806 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B19824411F1D008AA806 /* ProgressCircle.swift */; };
 		FED8B19B24411F2D008AA806 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B19A24411F2D008AA806 /* VideoList.swift */; };
 		FED8B19D24411F3A008AA806 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B19C24411F3A008AA806 /* LoadingIndicator.swift */; };
+		FED8B19F24411F86008AA806 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B19E24411F86008AA806 /* Network.swift */; };
+		FED8B1A124411FA8008AA806 /* VideosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A024411FA8008AA806 /* VideosResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		FED8B19824411F1D008AA806 /* ProgressCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		FED8B19A24411F2D008AA806 /* VideoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		FED8B19C24411F3A008AA806 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		FED8B19E24411F86008AA806 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FED8B1A024411FA8008AA806 /* VideosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				FED8B18A24411D3B008AA806 /* Video.swift */,
+				FED8B1A024411FA8008AA806 /* VideosResponse.swift */,
 				FED8B18B24411D49008AA806 /* SampleVideoStore.swift */,
 			);
 			path = Model;
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				FED8B19224411E54008AA806 /* ImageLoader.swift */,
+				FED8B19E24411F86008AA806 /* Network.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +324,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED8B1A124411FA8008AA806 /* VideosResponse.swift in Sources */,
+				FED8B19F24411F86008AA806 /* Network.swift in Sources */,
 				FED8B19D24411F3A008AA806 /* LoadingIndicator.swift in Sources */,
 				FED8B19324411E54008AA806 /* ImageLoader.swift in Sources */,
 				FED8B18E24411DCE008AA806 /* VideoRow.swift in Sources */,
