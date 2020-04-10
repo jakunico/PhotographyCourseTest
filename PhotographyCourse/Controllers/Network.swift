@@ -9,13 +9,17 @@
 import Foundation
 import Combine
 
+/// Provides access to all the endpoints in the API.
 class Network {
-    
     func getVideos(url: URL) -> AnyPublisher<VideosResponse, Error> {
         return get(url: url)
     }
-    
-    private func get<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {
+}
+
+// MARK: - Private extension with standard HTTP operations
+
+private extension Network {
+    func get<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {
         return URLSession.shared
             .dataTaskPublisher(for: url)
             .map { $0.data }
@@ -24,5 +28,4 @@ class Network {
             .eraseToAnyPublisher()
         
     }
-    
 }
