@@ -15,7 +15,7 @@ class App: ObservableObject {
     let videoDownloadsCache = Cache(identifier: "videoDownloads")
     let videoDownloader = VideoDownloader()
     
-    lazy private(set) var videoLoader = VideoLoader(app: self)
+    lazy private(set) var videoLoader = VideoNetwork(app: self)
 }
 
 class AppState: ObservableObject {

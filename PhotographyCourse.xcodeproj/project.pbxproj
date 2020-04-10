@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FED8B15A24411D14008AA806 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B15924411D14008AA806 /* AppDelegate.swift */; };
 		FED8B15C24411D14008AA806 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B15B24411D14008AA806 /* SceneDelegate.swift */; };
-		FED8B15E24411D14008AA806 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B15D24411D14008AA806 /* ContentView.swift */; };
 		FED8B16024411D18008AA806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FED8B15F24411D18008AA806 /* Assets.xcassets */; };
 		FED8B16324411D18008AA806 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FED8B16224411D18008AA806 /* Preview Assets.xcassets */; };
 		FED8B16624411D18008AA806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED8B16424411D18008AA806 /* LaunchScreen.storyboard */; };
@@ -54,7 +53,6 @@
 		FED8B15624411D14008AA806 /* PhotographyCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotographyCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED8B15924411D14008AA806 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FED8B15B24411D14008AA806 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FED8B15D24411D14008AA806 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FED8B15F24411D18008AA806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FED8B16224411D18008AA806 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FED8B16524411D18008AA806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				FED8B18924411D2F008AA806 /* Model */,
 				FED8B15924411D14008AA806 /* AppDelegate.swift */,
 				FED8B15B24411D14008AA806 /* SceneDelegate.swift */,
-				FED8B15D24411D14008AA806 /* ContentView.swift */,
 				FED8B15F24411D18008AA806 /* Assets.xcassets */,
 				FED8B16424411D18008AA806 /* LaunchScreen.storyboard */,
 				FED8B16724411D18008AA806 /* Info.plist */,
@@ -351,7 +348,6 @@
 				FED8B15A24411D14008AA806 /* AppDelegate.swift in Sources */,
 				FED8B15C24411D14008AA806 /* SceneDelegate.swift in Sources */,
 				FED8B19924411F1D008AA806 /* ProgressCircle.swift in Sources */,
-				FED8B15E24411D14008AA806 /* ContentView.swift in Sources */,
 				FED8B1A92441208F008AA806 /* VideoDownloadLinker.swift in Sources */,
 				FED8B18F24411E26008AA806 /* Video.swift in Sources */,
 				FED8B19524411E9E008AA806 /* VideoDetail.swift in Sources */,
