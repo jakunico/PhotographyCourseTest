@@ -51,7 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FED8B15624411D14008AA806 /* PhotographyCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotographyCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED8B15624411D14008AA806 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED8B15924411D14008AA806 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FED8B15B24411D14008AA806 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FED8B15F24411D18008AA806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		FED8B15724411D14008AA806 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FED8B15624411D14008AA806 /* PhotographyCourse.app */,
+				FED8B15624411D14008AA806 /* Test.app */,
 				FED8B16C24411D18008AA806 /* PhotographyCourseTests.xctest */,
 				FED8B17724411D18008AA806 /* PhotographyCourseUITests.xctest */,
 			);
@@ -233,7 +233,7 @@
 			);
 			name = PhotographyCourse;
 			productName = PhotographyCourse;
-			productReference = FED8B15624411D14008AA806 /* PhotographyCourse.app */;
+			productReference = FED8B15624411D14008AA806 /* Test.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FED8B16B24411D18008AA806 /* PhotographyCourseTests */ = {
@@ -530,8 +530,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"PhotographyCourse/Preview Content\"";
+				DEVELOPMENT_TEAM = 33ZU55Z83X;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PhotographyCourse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -539,8 +541,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasjakubowski.PhotographyCourse;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasjakubowski.photographycoursetest;
+				PRODUCT_NAME = Test;
+				PROVISIONING_PROFILE_SPECIFIER = "Photography Course Test Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -550,8 +553,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"PhotographyCourse/Preview Content\"";
+				DEVELOPMENT_TEAM = 33ZU55Z83X;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PhotographyCourse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -559,8 +564,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasjakubowski.PhotographyCourse;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasjakubowski.photographycoursetest;
+				PRODUCT_NAME = Test;
+				PROVISIONING_PROFILE_SPECIFIER = "Photography Course Test Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
