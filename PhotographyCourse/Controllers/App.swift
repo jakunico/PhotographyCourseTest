@@ -11,8 +11,8 @@ import Foundation
 class App: ObservableObject {
     let state = AppState()
     let network = Network()
-    let videoListCache = Cache(identifier: "videoList")
-    let videoDownloadsCache = Cache(identifier: "videoDownloads")
+    let videoListCache = Cache<[Video]>(identifier: "videoList")
+    let videoDownloadsCache = Cache<VideoDownloadLinker>(identifier: "videoDownloads")
     let videoDownloader = VideoDownloader()
     
     lazy private(set) var videoLoader = VideoNetwork(app: self)

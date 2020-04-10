@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Cache {
+/// Provides a simple interface for caching Codable objects in disk.
+class Cache<T: Codable> {
     let identifier: String
     
     private let manager = FileManager.default
@@ -19,14 +20,14 @@ class Cache {
         self.identifier = identifier
     }
     
-    func store<T: Codable>(_ object: T) throws {
+    func store(_ object: T) throws {
         let encoder = JSONEncoder()
         let data = try encoder.encode(object)
         let string = String(data: data, encoding: .utf8)
         try string?.write(toFile: cacheFile.path, atomically: true, encoding: .utf8)
     }
     
-    func retrieve<T: Codable>() throws -> T? {
+    func retrieve() throws -> T? {
         guard manager.fileExists(atPath: cacheFile.path) else { return nil }
         let data = try Data(contentsOf: cacheFile)
         let decoder = JSONDecoder()

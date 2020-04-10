@@ -14,8 +14,8 @@ class VideoNetwork {
     var state: AppState { app.state }
     var network: Network { app.network }
     var videoDownloader: VideoDownloader { app.videoDownloader }
-    var videoListCache: Cache { app.videoListCache }
-    var videoDownloadsCache: Cache { app.videoDownloadsCache }
+    var videoListCache: Cache<[Video]> { app.videoListCache }
+    var videoDownloadsCache: Cache<VideoDownloadLinker> { app.videoDownloadsCache }
     
     private var getVideosCancellable: AnyCancellable?
     
@@ -39,7 +39,7 @@ class VideoNetwork {
                 })
             
             do {
-                var linker: VideoDownloadLinker = try self.videoDownloadsCache.retrieve() ?? VideoDownloadLinker(entries: [:])
+                var linker = try self.videoDownloadsCache.retrieve() ?? VideoDownloadLinker(entries: [:])
                 linker.entries[video] = urlInDisk
                 try self.videoDownloadsCache.store(linker)
             } catch {
@@ -82,7 +82,7 @@ class VideoNetwork {
         }
         
         let handleError: (Error) -> Void = { error in
-            if let videos: [Video] = try? self.videoListCache.retrieve(), videos.count > 0 {
+            if let videos = try? self.videoListCache.retrieve(), videos.count > 0 {
                 handleSuccess(videos, true)
             } else {
                 self.state.videoLoadingError = error
@@ -115,7 +115,7 @@ class VideoNetwork {
     }
     
     private func videoUrlInDisk(for video: Video) -> URL? {
-        guard let linker: VideoDownloadLinker = try? self.videoDownloadsCache.retrieve() else { return nil }
+        guard let linker = try? self.videoDownloadsCache.retrieve() else { return nil }
         return linker.entries[video.video]
     }
 }
