@@ -10,6 +10,9 @@ import Foundation
 import SwiftUI
 import Combine
 
+typealias LocalVideoURL = URL
+typealias RemoteVideoURL = URL
+
 class Video: Identifiable, Codable, ObservableObject {
     
     enum CodingKeys: String, CodingKey {
@@ -24,9 +27,9 @@ class Video: Identifiable, Codable, ObservableObject {
     var name: String
     var thumbnail: URL
     var description: String
-    var video: URL
+    var video: RemoteVideoURL
     
-    init(id: Int, name: String, thumbnail: URL, description: String, video: URL) {
+    init(id: Int, name: String, thumbnail: URL, description: String, video: RemoteVideoURL) {
         self.id = id
         self.name = name
         self.thumbnail = thumbnail
@@ -48,7 +51,7 @@ class Video: Identifiable, Codable, ObservableObject {
     }
     
     @Published var image: UIImage?
-    @Published var videoUrlInDisk: URL? = nil
+    @Published var videoUrlInDisk: LocalVideoURL?
     @Published var downloadError: Error?
     @Published var downloadProgress: Double?
     

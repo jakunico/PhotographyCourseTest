@@ -30,6 +30,7 @@
 		FED8B1A724412069008AA806 /* VideoNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A624412069008AA806 /* VideoNetwork.swift */; };
 		FED8B1A92441208F008AA806 /* VideoDownloadLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A82441208F008AA806 /* VideoDownloadLinker.swift */; };
 		FED8B1AB244120F1008AA806 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1AA244120F1008AA806 /* App.swift */; };
+		FED8B1AD244126D0008AA806 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1AC244126D0008AA806 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		FED8B1A624412069008AA806 /* VideoNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNetwork.swift; sourceTree = "<group>"; };
 		FED8B1A82441208F008AA806 /* VideoDownloadLinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadLinker.swift; sourceTree = "<group>"; };
 		FED8B1AA244120F1008AA806 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		FED8B1AC244126D0008AA806 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				FED8B16424411D18008AA806 /* LaunchScreen.storyboard */,
 				FED8B16724411D18008AA806 /* Info.plist */,
 				FED8B16124411D18008AA806 /* Preview Content */,
+				FED8B1AC244126D0008AA806 /* Extensions.swift */,
 			);
 			path = PhotographyCourse;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				FED8B19D24411F3A008AA806 /* LoadingIndicator.swift in Sources */,
 				FED8B19324411E54008AA806 /* ImageLoader.swift in Sources */,
 				FED8B18E24411DCE008AA806 /* VideoRow.swift in Sources */,
+				FED8B1AD244126D0008AA806 /* Extensions.swift in Sources */,
 				FED8B1A524412016008AA806 /* VideoDownloader.swift in Sources */,
 				FED8B1A724412069008AA806 /* VideoNetwork.swift in Sources */,
 				FED8B15A24411D14008AA806 /* AppDelegate.swift in Sources */,

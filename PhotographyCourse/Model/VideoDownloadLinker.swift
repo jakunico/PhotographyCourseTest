@@ -9,8 +9,5 @@
 import Foundation
 
 struct VideoDownloadLinker: Codable {
-    typealias LocalVideoURL = URL
-    typealias RemoteVideoURL = URL
-    
     var entries: [RemoteVideoURL: LocalVideoURL]
 }
