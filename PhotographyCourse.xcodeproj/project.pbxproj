@@ -28,6 +28,9 @@
 		FED8B1A124411FA8008AA806 /* VideosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A024411FA8008AA806 /* VideosResponse.swift */; };
 		FED8B1A324411FE5008AA806 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A224411FE5008AA806 /* Cache.swift */; };
 		FED8B1A524412016008AA806 /* VideoDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A424412016008AA806 /* VideoDownloader.swift */; };
+		FED8B1A724412069008AA806 /* VideoNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A624412069008AA806 /* VideoNetwork.swift */; };
+		FED8B1A92441208F008AA806 /* VideoDownloadLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A82441208F008AA806 /* VideoDownloadLinker.swift */; };
+		FED8B1AB244120F1008AA806 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1AA244120F1008AA806 /* App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		FED8B1A024411FA8008AA806 /* VideosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosResponse.swift; sourceTree = "<group>"; };
 		FED8B1A224411FE5008AA806 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		FED8B1A424412016008AA806 /* VideoDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloader.swift; sourceTree = "<group>"; };
+		FED8B1A624412069008AA806 /* VideoNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNetwork.swift; sourceTree = "<group>"; };
+		FED8B1A82441208F008AA806 /* VideoDownloadLinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadLinker.swift; sourceTree = "<group>"; };
+		FED8B1AA244120F1008AA806 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,7 @@
 				FED8B18A24411D3B008AA806 /* Video.swift */,
 				FED8B1A024411FA8008AA806 /* VideosResponse.swift */,
 				FED8B18B24411D49008AA806 /* SampleVideoStore.swift */,
+				FED8B1A82441208F008AA806 /* VideoDownloadLinker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +202,8 @@
 				FED8B19E24411F86008AA806 /* Network.swift */,
 				FED8B1A224411FE5008AA806 /* Cache.swift */,
 				FED8B1A424412016008AA806 /* VideoDownloader.swift */,
+				FED8B1A624412069008AA806 /* VideoNetwork.swift */,
+				FED8B1AA244120F1008AA806 /* App.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,14 +342,17 @@
 				FED8B1A124411FA8008AA806 /* VideosResponse.swift in Sources */,
 				FED8B1A324411FE5008AA806 /* Cache.swift in Sources */,
 				FED8B19F24411F86008AA806 /* Network.swift in Sources */,
+				FED8B1AB244120F1008AA806 /* App.swift in Sources */,
 				FED8B19D24411F3A008AA806 /* LoadingIndicator.swift in Sources */,
 				FED8B19324411E54008AA806 /* ImageLoader.swift in Sources */,
 				FED8B18E24411DCE008AA806 /* VideoRow.swift in Sources */,
 				FED8B1A524412016008AA806 /* VideoDownloader.swift in Sources */,
+				FED8B1A724412069008AA806 /* VideoNetwork.swift in Sources */,
 				FED8B15A24411D14008AA806 /* AppDelegate.swift in Sources */,
 				FED8B15C24411D14008AA806 /* SceneDelegate.swift in Sources */,
 				FED8B19924411F1D008AA806 /* ProgressCircle.swift in Sources */,
 				FED8B15E24411D14008AA806 /* ContentView.swift in Sources */,
+				FED8B1A92441208F008AA806 /* VideoDownloadLinker.swift in Sources */,
 				FED8B18F24411E26008AA806 /* Video.swift in Sources */,
 				FED8B19524411E9E008AA806 /* VideoDetail.swift in Sources */,
 				FED8B19024411E28008AA806 /* SampleVideoStore.swift in Sources */,
