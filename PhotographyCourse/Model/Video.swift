@@ -32,7 +32,8 @@ class Video: Identifiable, Codable, ObservableObject {
         self.thumbnail = thumbnail
         self.description = description
         self.video = video
-        self.imageLoader = ImageLoader(url: thumbnail) { self.image = $0 }
+        self.imageLoader = ImageLoader(url: thumbnail)
+        self.imageLoaderAssignmentCancellable = self.imageLoader.$image.assign(to: \.image, on: self)
     }
     
     required init(from decoder: Decoder) throws {
@@ -42,7 +43,8 @@ class Video: Identifiable, Codable, ObservableObject {
         self.thumbnail = try values.decode(URL.self, forKey: .thumbnail)
         self.description = try values.decode(String.self, forKey: .description)
         self.video = try values.decode(URL.self, forKey: .video)
-        self.imageLoader = ImageLoader(url: thumbnail) { self.image = $0 }
+        self.imageLoader = ImageLoader(url: thumbnail)
+        self.imageLoaderAssignmentCancellable = self.imageLoader.$image.assign(to: \.image, on: self)
     }
     
     @Published var image: UIImage?
@@ -52,5 +54,6 @@ class Video: Identifiable, Codable, ObservableObject {
     
     var urlForVideoPlayer: URL { videoUrlInDisk ?? video }
     
-    private var imageLoader: ImageLoader!
+    private var imageLoader: ImageLoader
+    private var imageLoaderAssignmentCancellable: AnyCancellable?
 }

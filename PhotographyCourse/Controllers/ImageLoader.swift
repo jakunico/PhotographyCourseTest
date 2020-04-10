@@ -10,18 +10,22 @@ import Foundation
 import Combine
 import UIKit
 
+/// Takes care of loading images from a remote server.
 class ImageLoader: ObservableObject, Identifiable {
     @Published var image: UIImage?
     
     let id = UUID()
     let url: URL
     
-    init(url: URL, completion: @escaping (UIImage?) -> Void) {
+    private var imageLoadingCancellable: AnyCancellable?
+    
+    init(url: URL) {
         self.url = url
-        URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
-            guard error == nil else { return }
-            self.image = UIImage(data: data!)
-            DispatchQueue.main.async { completion(self.image) }
-        }).resume()
+        imageLoadingCancellable = URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .compactMap { UIImage(data: $0) }
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { self.image = $0 })
     }
 }
