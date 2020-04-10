@@ -49,6 +49,8 @@
 		FED8B17724411D18008AA806 /* PhotographyCourseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotographyCourseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED8B17B24411D18008AA806 /* PhotographyCourseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographyCourseUITests.swift; sourceTree = "<group>"; };
 		FED8B17D24411D18008AA806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FED8B18A24411D3B008AA806 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		FED8B18B24411D49008AA806 /* SampleVideoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleVideoStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		FED8B15824411D14008AA806 /* PhotographyCourse */ = {
 			isa = PBXGroup;
 			children = (
+				FED8B18924411D2F008AA806 /* Model */,
 				FED8B15924411D14008AA806 /* AppDelegate.swift */,
 				FED8B15B24411D14008AA806 /* SceneDelegate.swift */,
 				FED8B15D24411D14008AA806 /* ContentView.swift */,
@@ -134,6 +137,15 @@
 				FED8B17D24411D18008AA806 /* Info.plist */,
 			);
 			path = PhotographyCourseUITests;
+			sourceTree = "<group>";
+		};
+		FED8B18924411D2F008AA806 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FED8B18A24411D3B008AA806 /* Video.swift */,
+				FED8B18B24411D49008AA806 /* SampleVideoStore.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
