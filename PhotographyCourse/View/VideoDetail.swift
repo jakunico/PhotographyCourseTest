@@ -79,30 +79,24 @@ struct VideoDetail: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 25, alignment: .trailing)
-                .asAnyView()
+                .eraseToAnyView()
         } else if let progress = video.downloadProgress {
             return Button(action: {
                 self.isShowingCancelVideoSheet = true
             }) {
                 ProgressCircle(lineWidth: 4, progress: CGFloat(progress))
                     .frame(width: 25, height: 25)
-            }.asAnyView()
+            }.eraseToAnyView()
         } else {
             return HStack {
                 Button(action: { self.app.videoLoader.downloadVideo(video: self.video) }) {
                     Image(systemName: "square.and.arrow.down")
                         .imageScale(.large)
                 }
-            }.asAnyView()
+            }.eraseToAnyView()
         }
     }
     
-}
-
-extension View {
-    func asAnyView() -> AnyView {
-        AnyView(self)
-    }
 }
 
 struct VideoDetail_Preview: PreviewProvider {

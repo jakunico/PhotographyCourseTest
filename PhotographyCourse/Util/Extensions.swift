@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension NSError {
     static func errorWithLocalizedDescription(_ description: String) -> NSError {
         return NSError(domain: "com.nicolasjakubowski",
                        code: 9000,
                        userInfo: [NSLocalizedDescriptionKey:description])
+    }
+}
+
+extension View {
+    func eraseToAnyView() -> AnyView {
+        AnyView(self)
     }
 }

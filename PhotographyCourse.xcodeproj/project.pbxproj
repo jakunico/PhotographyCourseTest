@@ -131,6 +131,7 @@
 		FED8B15824411D14008AA806 /* PhotographyCourse */ = {
 			isa = PBXGroup;
 			children = (
+				FED8B1AE2441313D008AA806 /* Util */,
 				FED8B19124411E44008AA806 /* Controllers */,
 				FED8B18C24411DBD008AA806 /* View */,
 				FED8B18924411D2F008AA806 /* Model */,
@@ -140,7 +141,6 @@
 				FED8B16424411D18008AA806 /* LaunchScreen.storyboard */,
 				FED8B16724411D18008AA806 /* Info.plist */,
 				FED8B16124411D18008AA806 /* Preview Content */,
-				FED8B1AC244126D0008AA806 /* Extensions.swift */,
 			);
 			path = PhotographyCourse;
 			sourceTree = "<group>";
@@ -206,6 +206,14 @@
 				FED8B1AA244120F1008AA806 /* App.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FED8B1AE2441313D008AA806 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FED8B1AC244126D0008AA806 /* Extensions.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
