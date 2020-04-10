@@ -73,7 +73,7 @@ extension VideoNetwork {
             // Update the localVideoUrl for each video
             
             videos.forEach { video in
-                video.videoUrlInDisk = self.localVideoUrl(for: video)
+                video.localVideoUrl = self.localVideoUrl(for: video)
             }
             
             self.state.videos = videos
@@ -118,7 +118,7 @@ extension VideoNetwork {
     /// Initiates the download for the given video.
     /// If the video is already downloaded the call is ignored.
     func downloadVideo(video: Video) {
-        guard video.videoUrlInDisk == nil else { return } // already downloaded
+        guard video.localVideoUrl == nil else { return } // already downloaded
         video.downloadError = nil // clear any previous error
         videoDownloader.downloadVideo(video)
     }
@@ -132,23 +132,23 @@ extension VideoNetwork {
     /// Called when the download of a video updates.
     fileprivate func videoDownloadDidProgress(url: RemoteVideoURL, progress: Double) {
         state.videos
-            .filter({ $0.video == url })
+            .filter({ $0.remoteVideoUrl == url })
             .forEach({ $0.downloadProgress = progress })
     }
     
     /// Called when the download of a video fails.
     fileprivate func videoDownloadDidFail(url: RemoteVideoURL, error: Error) {
         state.videos
-            .filter({ $0.video == url })
+            .filter({ $0.remoteVideoUrl == url })
             .forEach({ $0.downloadError = error })
     }
     
     /// Called when the download of a video completes.
     fileprivate func videoDownloadDidComplete(remoteUrl: RemoteVideoURL, localUrl: LocalVideoURL) {
         state.videos
-            .filter({ $0.video == remoteUrl })
+            .filter({ $0.remoteVideoUrl == remoteUrl })
             .forEach({
-                $0.videoUrlInDisk = localUrl
+                $0.localVideoUrl = localUrl
             })
         
         link(remoteVideoUrl: remoteUrl, with: localUrl)
@@ -167,7 +167,7 @@ private extension VideoNetwork {
             linker.entries[remoteVideoUrl] = localVideoUrl
             try self.videoDownloadsCache.store(linker)
         } catch {
-            print("VideoNetwork: Finished download a video but was unable to create the link between the VideoURL and the VideoURLInDisk: \(error)")
+            print("VideoNetwork: Finished download a video but was unable to create the link between the VideoURL and the localVideoUrl: \(error)")
         }
     }
     
@@ -175,7 +175,7 @@ private extension VideoNetwork {
     func localVideoUrl(for video: Video) -> LocalVideoURL? {
         do {
             if let linker = try self.videoDownloadsCache.retrieve() {
-                return linker.entries[video.video]
+                return linker.entries[video.remoteVideoUrl]
             }
         }catch {
             print("VideoNetwork: Unable to read the video downloads cache: \(error)")

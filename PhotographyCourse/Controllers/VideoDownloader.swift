@@ -42,7 +42,7 @@ class VideoDownloader: NSObject {
     func downloadVideo(_ video: Video) {
         
         func createNewDownload() {
-            let url = video.video
+            let url = video.remoteVideoUrl
             let asset = AVURLAsset(url: url)
             if let task = session.makeAssetDownloadTask(asset: asset, assetTitle: video.name, assetArtworkData: nil, options: nil) {
                 task.resume()
@@ -66,7 +66,7 @@ class VideoDownloader: NSObject {
         session.getAllTasks { tasks in
             tasks
                 .compactMap({ $0 as? AVAssetDownloadTask })
-                .filter({ $0.urlAsset.url == video.video })
+                .filter({ $0.urlAsset.url == video.remoteVideoUrl })
                 .filter({ $0.state == .running })
                 .forEach({ $0.cancel() })
         }
@@ -77,7 +77,7 @@ class VideoDownloader: NSObject {
         session.getAllTasks { tasks in
             if let existingTask = tasks
                 .compactMap({ $0 as? AVAssetDownloadTask })
-                .filter({ $0.urlAsset.url == video.video })
+                .filter({ $0.urlAsset.url == video.remoteVideoUrl })
                 .first {
                 
                 existingTask.resume()

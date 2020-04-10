@@ -20,21 +20,21 @@ class Video: Identifiable, Codable, ObservableObject {
         case name
         case thumbnail
         case description
-        case video = "video_link"
+        case remoteVideoUrl = "video_link"
     }
     
     var id: Int
     var name: String
     var thumbnail: URL
     var description: String
-    var video: RemoteVideoURL
+    var remoteVideoUrl: RemoteVideoURL
     
-    init(id: Int, name: String, thumbnail: URL, description: String, video: RemoteVideoURL) {
+    init(id: Int, name: String, thumbnail: URL, description: String, remoteVideoUrl: RemoteVideoURL) {
         self.id = id
         self.name = name
         self.thumbnail = thumbnail
         self.description = description
-        self.video = video
+        self.remoteVideoUrl = remoteVideoUrl
         self.imageLoader = ImageLoader(url: thumbnail)
         self.imageLoaderAssignmentCancellable = self.imageLoader.$image.assign(to: \.image, on: self)
     }
@@ -45,17 +45,17 @@ class Video: Identifiable, Codable, ObservableObject {
         self.name = try values.decode(String.self, forKey: .name)
         self.thumbnail = try values.decode(URL.self, forKey: .thumbnail)
         self.description = try values.decode(String.self, forKey: .description)
-        self.video = try values.decode(URL.self, forKey: .video)
+        self.remoteVideoUrl = try values.decode(URL.self, forKey: .remoteVideoUrl)
         self.imageLoader = ImageLoader(url: thumbnail)
         self.imageLoaderAssignmentCancellable = self.imageLoader.$image.assign(to: \.image, on: self)
     }
     
     @Published var image: UIImage?
-    @Published var videoUrlInDisk: LocalVideoURL?
+    @Published var localVideoUrl: LocalVideoURL?
     @Published var downloadError: Error?
     @Published var downloadProgress: Double?
     
-    var urlForVideoPlayer: URL { videoUrlInDisk ?? video }
+    var urlForVideoPlayer: URL { localVideoUrl ?? remoteVideoUrl }
     
     private var imageLoader: ImageLoader
     private var imageLoaderAssignmentCancellable: AnyCancellable?

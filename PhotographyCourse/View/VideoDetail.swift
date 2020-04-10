@@ -74,7 +74,7 @@ struct VideoDetail: View {
     }
     
     private var downloadStatus: some View {
-        if video.videoUrlInDisk != nil {
+        if video.localVideoUrl != nil {
             return Image(systemName: "checkmark.circle")
                 .resizable()
                 .aspectRatio(contentMode: .fit)

@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+/// A sample video store to provide a model for SwiftUI previews.
 class SampleVideoStore {
     
     static let all = [
@@ -23,14 +24,14 @@ class SampleVideoStore {
                                      name: "This video is not downloaded",
                                      thumbnail: URL(string: "https://picsum.photos/600/400")!,
                                      description: veryLongText,
-                                     video: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
+                                     remoteVideoUrl: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
     
     static let downloading: Video = {
         let video = Video(id: 2,
                           name: "This Video Is Downloading",
                           thumbnail: URL(string: "https://picsum.photos/600/400")!,
                           description: veryLongText,
-                          video: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
+                          remoteVideoUrl: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
         video.downloadProgress = 0.58
         return video
     }()
@@ -40,7 +41,7 @@ class SampleVideoStore {
                           name: "This Video download failed",
                           thumbnail: URL(string: "https://picsum.photos/600/400")!,
                           description: veryLongText,
-                          video: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
+                          remoteVideoUrl: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
         video.downloadError = NSError(domain: "com.nicolasjakubowski.thisapp", code: 9000, userInfo: [NSLocalizedDescriptionKey:"You are not connected to internet."])
         return video
     }()
@@ -49,14 +50,14 @@ class SampleVideoStore {
                                   name: "This Video Is Downloaded",
                                   thumbnail: URL(string: "https://picsum.photos/600/400")!,
                                   description: veryLongText,
-                                  video: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
+                                  remoteVideoUrl: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
     
     static let withImage: Video = {
         let video = Video(id: 5,
                           name: "This has an image loaded in memory",
                           thumbnail: URL(string: "https://picsum.photos/600/400")!,
                           description: veryLongText,
-                          video: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
+                          remoteVideoUrl: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
         video.image = UIImage(named: "sample_video")
         return video
     }()
