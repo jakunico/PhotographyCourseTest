@@ -9,88 +9,94 @@
 import Foundation
 import Combine
 
+/// This `VideoNetwork` interfaces between the `Network` and the app.
+/// Upon request it will fetch videos and put them in the `State`.
+/// Will also handle callbacks from the `VideoDownloader`and update the `State` as well.
 class VideoNetwork {
     let app: App
-    var state: AppState { app.state }
-    var network: Network { app.network }
-    var videoDownloader: VideoDownloader { app.videoDownloader }
-    var videoListCache: Cache<[Video]> { app.videoListCache }
-    var videoDownloadsCache: Cache<VideoDownloadLinker> { app.videoDownloadsCache }
+    
+    private var state: AppState { app.state }
+    private var network: Network { app.network }
+    private var videoDownloader: VideoDownloader { app.videoDownloader }
+    private var videoListCache: Cache<[Video]> { app.videoListCache }
+    private var videoDownloadsCache: Cache<VideoDownloadLinker> { app.videoDownloadsCache }
     
     private var getVideosCancellable: AnyCancellable?
     
     init(app: App) {
         self.app = app
         
+        // Register the handlers for the video downloads
+        
         videoDownloader.downloadFailedHandler = { [weak self] url, error in
-            self?.state.videos
-                .filter({ $0.video == url })
-                .forEach({ $0.downloadError = error })
+            self?.videoDownloadDidFail(url: url, error: error)
         }
         
-        videoDownloader.downloadCompletedHandler = { [weak self] video, urlInDisk in
-            
-            guard let `self` = self else { return }
-            
-            self.state.videos
-                .filter({ $0.video == video })
-                .forEach({
-                    $0.videoUrlInDisk = urlInDisk
-                })
-            
-            do {
-                var linker = try self.videoDownloadsCache.retrieve() ?? VideoDownloadLinker(entries: [:])
-                linker.entries[video] = urlInDisk
-                try self.videoDownloadsCache.store(linker)
-            } catch {
-                print("VideoLoader: Finished download a video but was unable to create the link between the VideoURL and the VideoURLInDisk")
-            }
-            
+        videoDownloader.downloadCompletedHandler = { [weak self] remoteVideoUrl, localVideoUrl in
+            self?.videoDownloadDidComplete(remoteUrl: remoteVideoUrl, localUrl: localVideoUrl)
         }
         
         videoDownloader.downloadProgress = { [weak self] url, progress in
-            self?.state.videos
-                .filter({ $0.video == url })
-                .forEach({ $0.downloadProgress = progress })
+            self?.videoDownloadDidProgress(url: url, progress: progress)
         }
     }
     
-    func getVideos() {
+}
+
+// MARK: - Video List
+
+extension VideoNetwork {
+    
+    private var videoListUrl: URL { URL(string: "https://iphonephotographyschool.com/test-api/videos")! }
+    
+    /// Fetches the video list and puts it into the `AppState.videos` property.
+    /// If something goes wrong the error is put into the `AppState.videoLoadingError` property.
+    func getVideosList() {
         guard !state.isLoadingVideos else { return }
         
         state.isLoadingVideos = true
         state.videoLoadingError = nil
         
-        let url = URL(string: "https://iphonephotographyschool.com/test-api/videos")!
-        
+        // Success handler for the request
         let handleSuccess: ([Video], Bool) -> Void = { videos, isFromCache in
+            
+            // Store this data in cache so that it is available without connection later
             
             if !isFromCache {
                 do {
                     try self.videoListCache.store(videos)
                 } catch {
-                    print("Unable to store video list in cache: \(error)")
+                    print("VideoNetwork: Unable to store video list in cache: \(error)")
                 }
             }
             
+            // Update the localVideoUrl for each video
+            
             videos.forEach { video in
-                video.video = URL(string: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8")!
-                video.videoUrlInDisk = self.videoUrlInDisk(for: video)
+                video.videoUrlInDisk = self.localVideoUrl(for: video)
             }
             
             self.state.videos = videos
         }
         
+        // Error handler for the request
         let handleError: (Error) -> Void = { error in
-            if let videos = try? self.videoListCache.retrieve(), videos.count > 0 {
-                handleSuccess(videos, true)
-            } else {
+            do {
+                // Attempt to load the videos from cache
+                if let videos = try self.videoListCache.retrieve(), videos.count > 0 {
+                    handleSuccess(videos, true)
+                } else {
+                    self.state.videoLoadingError = error
+                }
+            } catch let thrownError {
+                print("VideoNetwork: Unable to read from cache: \(thrownError)")
                 self.state.videoLoadingError = error
             }
         }
         
+        // Make the request
         getVideosCancellable = network
-            .getVideos(url: url)
+            .getVideos(url: videoListUrl)
             .map { $0.videos }
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -103,19 +109,78 @@ class VideoNetwork {
             })
     }
     
+}
+
+// MARK: - Video Download
+
+extension VideoNetwork {
+    
+    /// Initiates the download for the given video.
+    /// If the video is already downloaded the call is ignored.
     func downloadVideo(video: Video) {
         guard video.videoUrlInDisk == nil else { return } // already downloaded
         video.downloadError = nil // clear any previous error
         videoDownloader.downloadVideo(video)
     }
     
+    /// Cancels the download for the given video.
     func cancelDownload(video: Video) {
         videoDownloader.cancelDownload(for: video)
         video.downloadProgress = nil
     }
     
-    private func videoUrlInDisk(for video: Video) -> URL? {
-        guard let linker = try? self.videoDownloadsCache.retrieve() else { return nil }
-        return linker.entries[video.video]
+    /// Called when the download of a video updates.
+    fileprivate func videoDownloadDidProgress(url: RemoteVideoURL, progress: Double) {
+        state.videos
+            .filter({ $0.video == url })
+            .forEach({ $0.downloadProgress = progress })
+    }
+    
+    /// Called when the download of a video fails.
+    fileprivate func videoDownloadDidFail(url: RemoteVideoURL, error: Error) {
+        state.videos
+            .filter({ $0.video == url })
+            .forEach({ $0.downloadError = error })
+    }
+    
+    /// Called when the download of a video completes.
+    fileprivate func videoDownloadDidComplete(remoteUrl: RemoteVideoURL, localUrl: LocalVideoURL) {
+        state.videos
+            .filter({ $0.video == remoteUrl })
+            .forEach({
+                $0.videoUrlInDisk = localUrl
+            })
+        
+        link(remoteVideoUrl: remoteUrl, with: localUrl)
+    }
+    
+}
+
+// MARK: - VideoDownloadLinker Methods
+
+private extension VideoNetwork {
+    
+    /// Links the given remote video with a local video.
+    func link(remoteVideoUrl: RemoteVideoURL, with localVideoUrl: LocalVideoURL) {
+        do {
+            var linker = try self.videoDownloadsCache.retrieve() ?? VideoDownloadLinker(entries: [:])
+            linker.entries[remoteVideoUrl] = localVideoUrl
+            try self.videoDownloadsCache.store(linker)
+        } catch {
+            print("VideoNetwork: Finished download a video but was unable to create the link between the VideoURL and the VideoURLInDisk: \(error)")
+        }
+    }
+    
+    /// Returns the local video URL for the given video or `nil` if the video is now downloaded.
+    func localVideoUrl(for video: Video) -> LocalVideoURL? {
+        do {
+            if let linker = try self.videoDownloadsCache.retrieve() {
+                return linker.entries[video.video]
+            }
+        }catch {
+            print("VideoNetwork: Unable to read the video downloads cache: \(error)")
+        }
+        
+        return nil
     }
 }
