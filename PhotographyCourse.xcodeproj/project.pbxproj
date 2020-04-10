@@ -26,6 +26,7 @@
 		FED8B19D24411F3A008AA806 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B19C24411F3A008AA806 /* LoadingIndicator.swift */; };
 		FED8B19F24411F86008AA806 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B19E24411F86008AA806 /* Network.swift */; };
 		FED8B1A124411FA8008AA806 /* VideosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A024411FA8008AA806 /* VideosResponse.swift */; };
+		FED8B1A324411FE5008AA806 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B1A224411FE5008AA806 /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		FED8B19C24411F3A008AA806 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		FED8B19E24411F86008AA806 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		FED8B1A024411FA8008AA806 /* VideosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosResponse.swift; sourceTree = "<group>"; };
+		FED8B1A224411FE5008AA806 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			children = (
 				FED8B19224411E54008AA806 /* ImageLoader.swift */,
 				FED8B19E24411F86008AA806 /* Network.swift */,
+				FED8B1A224411FE5008AA806 /* Cache.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FED8B1A124411FA8008AA806 /* VideosResponse.swift in Sources */,
+				FED8B1A324411FE5008AA806 /* Cache.swift in Sources */,
 				FED8B19F24411F86008AA806 /* Network.swift in Sources */,
 				FED8B19D24411F3A008AA806 /* LoadingIndicator.swift in Sources */,
 				FED8B19324411E54008AA806 /* ImageLoader.swift in Sources */,
