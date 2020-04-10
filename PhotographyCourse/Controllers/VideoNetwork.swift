@@ -126,7 +126,11 @@ extension VideoNetwork {
     /// Cancels the download for the given video.
     func cancelDownload(video: Video) {
         videoDownloader.cancelDownload(for: video)
-        video.downloadProgress = nil
+        
+        // More than one video might be sharing the same download (for example, two Video entries with the same remoteVideoUrl)
+        state.videos
+            .filter({ $0.remoteVideoUrl == video.remoteVideoUrl })
+            .forEach({ $0.downloadProgress = nil })
     }
     
     /// Called when the download of a video updates.
