@@ -50,11 +50,19 @@ class Video: Identifiable, Codable, ObservableObject {
         self.imageLoaderAssignmentCancellable = self.imageLoader.$image.assign(to: \.image, on: self)
     }
     
+    /// The thumbnail loaded from the remote server or `nil`if it is not available yet.
     @Published var image: UIImage?
+    
+    /// The URL to file the file in disk that contains the downloaded file of this video or `nil` if this video has not been downloaded yet.
     @Published var localVideoUrl: LocalVideoURL?
+    
+    /// The error that happened while downloading this video or `nil`if there is no error yet.
     @Published var downloadError: Error?
+    
+    /// The progress of the download of this video or `nil` if the video is not being downloaded.
     @Published var downloadProgress: Double?
     
+    /// The `URL`to be used by the Video Player control.
     var urlForVideoPlayer: URL { localVideoUrl ?? remoteVideoUrl }
     
     private var imageLoader: ImageLoader
