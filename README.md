@@ -9,7 +9,7 @@ Demo video: https://share.icloud.com/photos/0tw8W28zErsg8KypCALpQjECg
 - Video list is cached so that you can still use the app while offline.
 - In-app media player.
 - Support for light and dark appereances.
-- 
+- Requires iOS 13.1 (or later)
 
 ### Tech
 
