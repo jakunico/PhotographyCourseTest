@@ -22,7 +22,7 @@ struct VideoList: View {
                         Text("Failed to load videos: \(state.videoLoadingError!.localizedDescription)")
                         Spacer()
                         Button("Retry") {
-                            self.app.videoLoader.getVideos()
+                            self.app.videoLoader.getVideosList()
                         }.buttonStyle(BorderlessButtonStyle())
                     }
                     Spacer()
@@ -39,7 +39,7 @@ struct VideoList: View {
             .navigationBarTitle("Videos")
         }
         .onAppear {
-            self.app.videoLoader.getVideos()
+            self.app.videoLoader.getVideosList()
         }
     }
     
