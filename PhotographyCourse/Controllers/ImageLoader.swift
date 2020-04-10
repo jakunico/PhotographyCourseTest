@@ -17,11 +17,17 @@ class ImageLoader: ObservableObject, Identifiable {
     let id = UUID()
     let url: URL
     
+    private let session: URLSession = {
+        var configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        return URLSession(configuration: configuration)
+    }()
+    
     private var imageLoadingCancellable: AnyCancellable?
     
     init(url: URL) {
         self.url = url
-        imageLoadingCancellable = URLSession.shared.dataTaskPublisher(for: url)
+        imageLoadingCancellable = session.dataTaskPublisher(for: url)
             .map { $0.data }
             .compactMap { UIImage(data: $0) }
             .receive(on: DispatchQueue.main)
