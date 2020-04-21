@@ -18,7 +18,7 @@ Demo video: https://share.icloud.com/photos/0tw8W28zErsg8KypCALpQjECg
 
 ### Missing
 
-The following were not included due to time constraints:
+The following were not included due to time constraints (6 hours project):
 
 - Refresh video list feature
 - Tests
