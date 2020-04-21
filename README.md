@@ -1,5 +1,7 @@
 # Photography Course Test
 
+This is a test for a startup I applied to.
+
 Demo video: https://share.icloud.com/photos/0tw8W28zErsg8KypCALpQjECg
 
 ### Features
